@@ -15,6 +15,8 @@ export interface Contact {
   id: string
   user_id: string
   name: string
+  nombre: string | null
+  apellidos: string | null
   email: string | null
   phone: string | null
   title: string | null
@@ -22,6 +24,18 @@ export interface Contact {
   company?: Pick<Company, 'id' | 'name'>
   tags: string[]
   notes: string | null
+  status: 'lead' | 'prospect' | 'customer'
+  sector: string | null
+  employees: number
+  cif: string | null
+  categoria: string | null
+  hoja_encomienda: string | null
+  servicio: string | null
+  problematica: string | null
+  credito_fundae: number
+  fecha_inicial: string | null
+  oferta_potencial: number
+  last_activity: string | null
   created_at: string
   updated_at: string
 }
@@ -48,6 +62,10 @@ export interface Deal {
   probability: number
   expected_close: string | null
   notes: string | null
+  tags: string[]
+  program: string | null
+  priority: 'low' | 'med' | 'hi'
+  progress: number
   created_at: string
   updated_at: string
 }
@@ -55,7 +73,7 @@ export interface Deal {
 export interface Activity {
   id: string
   user_id: string
-  type: 'call' | 'email' | 'meeting' | 'note' | 'task'
+  type: 'call' | 'email' | 'meeting' | 'note' | 'task' | 'stage'
   subject: string
   body: string | null
   entity_type: 'contact' | 'deal' | 'company'

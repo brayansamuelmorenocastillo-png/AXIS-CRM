@@ -17,6 +17,7 @@ interface Props {
   entityType: EntityType
   entityId: string
   onSuccess: () => void
+  onClose?: () => void
 }
 
 export function ActivityForm({ entityType, entityId, onSuccess }: Props) {

@@ -3,25 +3,62 @@
 @tailwind utilities;
 
 :root {
-  --scrollbar-bg: #1a2028;
-  --scrollbar-thumb: #2a3441;
+  --bg-deep:     #07211c;
+  --bg-base:     #0c2a23;
+  --bg-elevated: #103a30;
+  --bg-card:     #144539;
+  --bg-hover:    #185143;
+  --bg-input:    #0a2520;
+
+  --border-subtle:  rgba(149, 200, 175, 0.08);
+  --border-default: rgba(149, 200, 175, 0.14);
+  --border-strong:  rgba(149, 200, 175, 0.24);
+
+  --mint:       #3eb37c;
+  --mint-bright:#4ed193;
+  --mint-soft:  rgba(62, 179, 124, 0.14);
+  --mint-glow:  rgba(62, 179, 124, 0.28);
+  --amber:      #e8a13c;
+  --amber-bright:#f5b454;
+  --amber-soft: rgba(232, 161, 60, 0.14);
+
+  --text-primary:   #f1ede2;
+  --text-secondary: #b8d0c2;
+  --text-muted:     #7a9a8b;
+  --text-faint:     #527063;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px -12px rgba(0,0,0,0.5);
+  --shadow-pop:  0 24px 48px -16px rgba(0,0,0,0.6), 0 0 0 1px rgba(149,200,175,0.1);
 }
 
 * { box-sizing: border-box; }
 
-body {
-  background: #0f1419;
-  color: #e6edf3;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--scrollbar-bg); }
-::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3a4553; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(149,200,175,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(149,200,175,0.2); }
 
-input, textarea, select {
-  outline: none;
+input, textarea, select { outline: none; font-family: inherit; }
+
+/* kanban drop zone */
+.kanban-col-over {
+  background: var(--mint-soft) !important;
+  border-color: var(--mint) !important;
 }
-
-.kanban-col { min-height: 200px; }
