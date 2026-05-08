@@ -12,9 +12,9 @@ const mainNav = [
   { href: '/companies', label: 'Cuentas',     icon: Building2 },
 ]
 const secondaryNav = [
-  { href: '#', label: 'Agenda',   icon: Calendar },
-  { href: '#', label: 'Informes', icon: BarChart2 },
-  { href: '#', label: 'Ajustes',  icon: Settings },
+  { href: '/agenda',   label: 'Agenda',   icon: Calendar },
+  { href: '/informes', label: 'Informes', icon: BarChart2 },
+  { href: '/ajustes',  label: 'Ajustes',  icon: Settings },
 ]
 
 export function Sidebar({ contactCount = 0 }: { contactCount?: number }) {
@@ -97,23 +97,29 @@ export function Sidebar({ contactCount = 0 }: { contactCount?: number }) {
 
       {/* OTROS */}
       <div style={{ fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-faint)', padding: '14px 12px 8px', fontWeight: 600 }}>Otros</div>
-      {secondaryNav.map(({ href, label, icon: Icon }) => (
-        <Link key={label} href={href} style={{
-          display: 'flex', alignItems: 'center', gap: 12,
-          padding: '9px 12px',
-          borderRadius: 'var(--r-md)',
-          fontSize: 13.5, fontWeight: 500,
-          color: 'var(--text-secondary)',
-          textDecoration: 'none',
-          transition: 'background 0.12s, color 0.12s',
-        }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--mint-soft)'; (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)' }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)' }}
-        >
-          <Icon size={17} style={{ flexShrink: 0 }} />
-          {label}
-        </Link>
-      ))}
+      {secondaryNav.map(({ href, label, icon: Icon }) => {
+        const active = isActive(href)
+        return (
+          <Link key={label} href={href} style={{
+            display: 'flex', alignItems: 'center', gap: 12,
+            padding: '9px 12px',
+            borderRadius: 'var(--r-md)',
+            fontSize: 13.5, fontWeight: 500,
+            color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+            background: active ? 'var(--mint-soft)' : 'transparent',
+            textDecoration: 'none',
+            position: 'relative',
+            transition: 'background 0.12s, color 0.12s',
+          }}
+          onMouseEnter={e => { if (!active) { (e.currentTarget as HTMLElement).style.background = 'var(--mint-soft)'; (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)' } }}
+          onMouseLeave={e => { if (!active) { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)' } }}
+          >
+            {active && <span style={{ position: 'absolute', left: -14, top: 8, bottom: 8, width: 3, background: 'var(--mint)', borderRadius: '0 3px 3px 0' }}/>}
+            <Icon size={17} style={{ flexShrink: 0 }} />
+            {label}
+          </Link>
+        )
+      })}
 
       {/* User footer */}
       <div style={{ marginTop: 'auto' }}>
